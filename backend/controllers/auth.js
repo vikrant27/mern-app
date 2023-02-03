@@ -17,7 +17,7 @@ const createuser = async (req,res) =>{
             email:req.body.email,
             password:secPassword
         });
-
+        
         const token = jwt.sign({id:user.id},process.env.JWT_SECRET,{expiresIn: '30d'});
         res.status(200).json({message:'user created',token});
     } catch (error) {

@@ -17,7 +17,7 @@ const addNotes = async (req,res) =>{
         console.log(error.message);
         res.status(500).send('internal server error');
     }
-}
+}//add notes
 
 const fetchuserallnotes = async (req,res) =>{
     try {
@@ -27,7 +27,7 @@ const fetchuserallnotes = async (req,res) =>{
         console.log(error.message);
         res.status(500).send('internal server error');
     }
-}
+}//fetchuserallnotes
 
 const updatenotes = async (req,res) =>{
     try {
@@ -38,10 +38,7 @@ const updatenotes = async (req,res) =>{
         if(title){newNote.title = title};
         if(description){newNote.description = description};
         if(tag){newNote.tag = tag};
-        console.log(req.params.id)
         let note = await Notes.findById(req.params.id);
-
-        console.log(note)
 
         if(!note){return res.status(404).json("Not found")};
 
@@ -53,12 +50,11 @@ const updatenotes = async (req,res) =>{
 
         res.status(200).json({message:'update notes',note});
 
-
     } catch (error) {
         console.log(error.message);
         res.status(500).send('internal server error');
     }
-}
+}//updates notes
 
 const deletenotes = async (req,res) =>{
     try {
@@ -70,16 +66,15 @@ const deletenotes = async (req,res) =>{
             return res.status(401).send("Not allowed")
         }
 
-       note = await Notes.findByIdAndDelete(req.params.id);
+        note = await Notes.findByIdAndDelete(req.params.id);
 
         res.status(200).json({message:'Note has been deleted successfully',note});
-
 
     } catch (error) {
         console.log(error.message);
         res.status(500).send('internal server error');
     }
-}
+}//deletenotes
 
 module.exports ={
     addNotes,
