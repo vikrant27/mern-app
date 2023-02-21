@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import NoteState from './context/notes/NoteState';
+import Alert from './components/Alert';
 
 function App() {
   return (
@@ -15,12 +16,15 @@ function App() {
       <NoteState>
         <Router>
           <Navbar/>
-          <Home/>
-          <Routes>
-            <Route exact path='/' element={<Home/>}/>
-            <Route exact path='/about' element={<About/>}/>
-            <Route exact path='/users' element={<About/>}/>
-          </Routes>
+          <Alert message="This is just imaging react course"/>
+          <div className='container'>
+         
+            <Routes>
+              <Route exact path='/' element={<Home/>}/>
+              <Route exact path='/about' element={<About/>}/>
+              <Route exact path='/users' element={<About/>}/>
+            </Routes>
+          </div>
         </Router>
       </NoteState>
     </>

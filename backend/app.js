@@ -1,6 +1,7 @@
 const dotenv = require('dotenv')
 const express = require('express');
-const connectDB = require('./db/connect')
+const connectDB = require('./db/connect');
+const cors = require('cors');
 
 const app = express();
 
@@ -10,7 +11,8 @@ dotenv.config({ path:'./config/.env'})
 
 
 // middleware
-app.use(express.static('./public'))
+app.use(cors());
+app.use(express.static('./public'));
 app.use(express.json());
 
 //routes

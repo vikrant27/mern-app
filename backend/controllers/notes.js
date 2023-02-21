@@ -11,7 +11,7 @@ const addNotes = async (req,res) =>{
 
         const notes = await Notes.create({title,description,tag, user: req.user.id});
 
-        res.status(200).json({message:'notes created',notes});
+        res.status(200).json(notes);
 
     } catch (error) {
         console.log(error.message);
@@ -22,7 +22,7 @@ const addNotes = async (req,res) =>{
 const fetchuserallnotes = async (req,res) =>{
     try {
         const notes = await Notes.find({user: req.user.id});
-        res.status(200).json({message:'fetch user notes',notes});
+        res.status(200).json(notes);
     } catch (error) {
         console.log(error.message);
         res.status(500).send('internal server error');
