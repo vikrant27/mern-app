@@ -19,8 +19,11 @@ export default function Navbar() {
                     <li className="nav-item">
                         <Link className={`nav-link ${location.pathname==="/about" ? "active":""}`} aria-current="page" to="/about">About</Link>
                     </li>
-                    
                     </ul>
+                    <form className="d-flex">
+                        <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
+                        <Link className="btn btn-primary mx-1" role="button" to="/signup">SignUp</Link>
+                    </form>
                 </div>
                 </div>
             </nav>

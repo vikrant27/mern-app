@@ -19,14 +19,14 @@ const createuser = async (req,res) =>{
         });
         
         const token = jwt.sign({id:user.id},process.env.JWT_SECRET,{expiresIn: '30d'});
-        res.status(200).json({message:'user created',token});
+        res.status(200).json({message:'user created',success:true,token});
     } catch (error) {
         if(error.code === 11000 && error.keyPattern.email === 1){
-           return res.status(400).json({error:'Please enter a unique email'});
+           return res.status(400).json({success:false,error:'Please enter a unique email'});
         }
         //res.send(error)
        //console.log(error);
-        res.status(500).json(error);
+        res.status(500).json({success:false,error});
         
     }
 }//createuser endpoint
@@ -49,11 +49,11 @@ const login = async (req,res) =>{
         const passwordCompare =  await bcrypt.compare(password,user.password);
 
         if(!passwordCompare){
-            return res.status(400).json({error:'Please try to login with correct credentials'});
+            return res.status(400).json({success:false,error:'Please try to login with correct credentials'});
         }
 
         const token = jwt.sign({id:user.id},process.env.JWT_SECRET,{expiresIn: '30d'});
-        res.status(200).json({message:'user login successfully',token})
+        res.status(200).json({message:'user login successfully',success:true,token})
     } catch (error) {
         //res.send(error)
        //console.log(error);
