@@ -23,8 +23,9 @@ export default function Login(props) {
         if(json.success){
 
             localStorage.setItem('token', json.token);
-            navigate("/")
             props.showAlert('User Login Successfully','success');
+            navigate("/")
+            
 
         }else{
             props.showAlert('Invalid Credintails','danger');
@@ -36,7 +37,8 @@ export default function Login(props) {
     }
 
     return(
-        <div>
+        <div className="mt-2">
+            <h2>Login to continue to iNoteBook</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
